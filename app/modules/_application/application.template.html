@@ -1,0 +1,4 @@
+<div ui-view="application"></div>
+<p>Er du logget ind? {{application.isLoggedIn}}</p>
+<button ng-if="!application.isLoggedIn" ng-click="application.login()">login</button>
+<button ng-if="application.isLoggedIn" ng-click="application.logout()">logout</button>
