@@ -1,42 +1,50 @@
-# PlusOne real-time voting Angular application
- 
-A simple application demonstrating how we structure our Angular applications at Nodes.
- 
- It's an application that lets anyone:
- - create a PlusOne (ie. a topic)
- - create a suggestion in a PlusOne
- - vote infinite times on a suggestion
- 
-The application is very basic, but could serve as a starting point for a more advanced application with authentication, graphs, hidden PlusOnes etc.
+Spec:
 
-I have added some comments and doc blocks to the javascript files to explain how things work and why we structure and configure Angular as we have.
+PlusOnes
+	En liste af forslag man kan stemme på
 
-## Firebase
+	En PlusOne indeholder:
+		owners: [],
+		users: [] || null,
+		created: unix,
+		modified: unix,
+		suggestions: []<Suggestion>,
+		votesPrSuggestion: int,
+		totalVotes: int
 
-If you want to run this project on your own machine, i urge you to set up your own [Firebase](https://firebase.io). You can change the reference to Firebase in the API_ENDPOINTS constant.
+	En Suggestion indeholder:
+		creator: userID || null,
+		created: unix,
+		modified: unix,
+		votes: int
+	
+	sikkerhed for PlusOne:
+		hidden: alle med link kan, men man skal authentikere sig og ens email skal passe til de inviterede, 			stemme
 
-## Prerequisites
+	Alle PlusOnes har en eller flere ejere
+		kan konfigurere:
+			hvem der må oprette forslag
+			hvem der er inviteret
+			hvor mange gange folk må stemme på 1 forslag (en gang, så read only…)
+		kan invitere via en email adresse (vi sender en email med link)
+		kan dele linket via diverse
 
-1. Install [Node.js](http://nodejs.org)
+	Alle brugere der kan se afstemning
+		kan give point til et forslag
+		kan se en graf over forslag + point
+	
+Notifications:
+	Push if not in focus
+	In-app if in focus
 
-2. Install Yeoman `npm install -g yo`
+Share via:
+	Twitter
+	Facebooks
 
-3. Install these NPM packages globally
+Routing:
 
-```bash
-npm install -g bower gulp
-```
+	/	public	
 
-## Get started
-
-1. Fork or download this repository
-
-2. In the directory, run `npm install` and `bower install`
-
-3. To start the development server run `grunt serve`
-
-4. To build the project run `grunt build` - you can start a server which serves the production files by running `grunt dist`
-
-## Extend it
-
-If you want to add additional features i recommend using the [generator-nodes](https://www.npmjs.com/package/generator-nodes) Yeoman generator (shameless plug!)
+	/plusones		protected list PlusOnes
+	/plusones/:id		protected edit PlusOne
+	/create			protected new PlusOne
