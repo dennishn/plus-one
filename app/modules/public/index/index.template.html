@@ -1,1 +1,9 @@
+<div ng-if="!application.isLoggedIn">
+    <button ng-click="application.login()">login</button>
+</div>
+<div ng-if="application.isLoggedIn">
+    <a ui-sref="application.protected.index" class="button">go to your plusOnes</a>
+    <button ng-click="application.logout()">logout</button>
+</div>
+
 <p>This is the public index view.</p>

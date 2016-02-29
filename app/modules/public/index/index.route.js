@@ -18,7 +18,7 @@
 					'application@application': {
 						templateUrl: 'modules/public/index/index.template.html',
 						controller: 'PublicIndexController',
-						controllerAs: 'public.index'
+						controllerAs: 'publicIndex'
 					}
 				}
 			};

@@ -4,8 +4,9 @@ PlusOnes
 	En liste af forslag man kan stemme på
 
 	En PlusOne indeholder:
-		owners: [],
-		users: [] || null,
+		creator: UserId
+		owners: Array<UserID>,
+		users: Array<UserId>,
 		created: unix,
 		modified: unix,
 		suggestions: []<Suggestion>,

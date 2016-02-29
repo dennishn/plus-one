@@ -10,8 +10,14 @@
 		.factory('PlusOneFactory', PlusOne);
 
 	/* @ngInject */
-	function PlusOne($firebaseArray, API_ENDPOINTS, PlusOnesService) {
+	function PlusOne($firebaseArray, API_ENDPOINTS, PlusOnesService, UsersService) {
 		/*jshint validthis: true */
+
+		var defaults = {
+			suggestions: [],
+			votesPrSuggestion: null,
+			totalVotes: 0
+		};
 
 		/**
 		 * Model constructor method. Used to create new PlusOnes with either default values or data provided.
@@ -21,6 +27,7 @@
 		 * @constructor
 		 */
 		var Model = function(data) {
+			angular.extend(this, defaults);
 			angular.extend(this, data);
 
 			// If we don't already have created/modified dates, we set these when we instantiate new models.
@@ -28,8 +35,8 @@
 				this.created = Date.now();
 			}
 
-			if(!this.updated) {
-				this.updated = this.created;
+			if(!this.modified) {
+				this.modified = this.created;
 			}
 
 			// A PlusOne is itself connected to a Firebase, but we also need to have real-time sync of the

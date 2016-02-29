@@ -1,3 +1,10 @@
-<p>This is the protected index view.</p>
-<br>
-<p>Greetings {{index.user.getFullName()}} <img ng-src="{{index.user.getProfileImage()}}"></p>
+<p>Greetings {{protectedIndex.user.getFullName()}} <img ng-src="{{protectedIndex.user.getProfileImage()}}"></p>
+
+<div ng-if="!protectedIndex.userPlusOnes || protectedIndex.userPlusOnes.lenght < 1">
+    <p>
+        You don't have any plusOnes yet, why not create one?
+    </p>
+    <button ng-click="protectedIndex.createPlusOne()">
+        Create plusOne
+    </button>
+</div>

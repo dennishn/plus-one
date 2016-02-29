@@ -18,7 +18,7 @@
 					'application@application': {
 						templateUrl: 'modules/protected/index/index.template.html',
 						controller: 'ProtectedIndexController',
-						controllerAs: 'index'
+						controllerAs: 'protectedIndex'
 					}
 				}
 			};
